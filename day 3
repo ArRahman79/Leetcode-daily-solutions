@@ -1,0 +1,43 @@
+//  14-01-2024
+
+int cmp(const void *a, const void *b)
+{
+    return ( *(int*)b-*(int*)a );
+}
+
+bool closeStrings(char* word1, char* word2) {
+    
+    int i,count1[26]={0},count2[26]={0};
+    
+    if(strlen(word1)!=strlen(word2))
+    {
+        return false;
+    }
+
+    for(i=0;i<strlen(word1);i++)
+    {
+        count1[word1[i]-'a']++;
+        count2[word2[i]-'a']++;
+    }
+
+    for(i=0;i<26;i++)
+    {
+        if((count1[i]>0 && count2[i]==0) || (count2[i]>0 && count1[i]==0))
+        {
+            return false;
+        }
+    }
+
+    qsort(count1,26,sizeof(int),cmp);
+    qsort(count2,26,sizeof(int),cmp);
+
+    for(i=0;i<26;i++)
+    {
+        if(count1[i]!=count2[i])
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
