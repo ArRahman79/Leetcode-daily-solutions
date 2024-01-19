@@ -1,0 +1,34 @@
+//  19-01-2024
+
+int min(int a, int b)
+{
+    return a < b ? a : b;
+}
+
+int minFallingPathSum(int** matrix, int matrixSize, int* matrixColSize)
+{
+    for (int i = matrixSize - 2; i >= 0; i--)
+    {
+        for (int j = 0; j < *matrixColSize; ++j)
+        {
+            int count = matrix[i + 1][j];
+            if (j > 0)
+            {
+                count = min(count, matrix[i + 1][j - 1]);
+            }
+            if (j < *matrixColSize - 1)
+            {
+                count = min(count, matrix[i + 1][j + 1]);
+            }
+            matrix[i][j] += count;
+        }
+    }
+
+    int result = matrix[0][0];
+    for (int j = 1; j < *matrixColSize; ++j)
+    {
+        result = min(result, matrix[0][j]);
+    }
+
+    return result;
+}
