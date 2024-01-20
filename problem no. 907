@@ -22,7 +22,6 @@ int sumSubarrayMins(int* arr, int arrSize) {
 }
 
 
-
 method 2nd ---->
 
 #define mod 1000000007
