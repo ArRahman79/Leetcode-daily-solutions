@@ -1,5 +1,30 @@
 //  20-01-2024
 
+// method 1st ---> ( it is producing unsigned int and I cann't fix this error so any suggest me for this solution )
+int sumSubarrayMins(int* arr, int arrSize) {
+    long long signed int min,sum=0;
+    for(register i=0;i<arrSize;i++)
+    {
+        for(register j=0;j<arrSize-i ;j++)
+        {
+            min=arr[i];
+            for(register k=i;k<i+j+1;k++)
+            {
+                if(min>arr[k])
+                {
+                    min=arr[k];
+                }
+            }
+            sum+=min;
+        }
+    }
+    return sum;
+}
+
+
+
+method 2nd ---->
+
 #define mod 1000000007
 
 int sumSubarrayMins(int* arr, int arrSize) {
