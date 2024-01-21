@@ -1,0 +1,23 @@
+//  21-01-2024
+
+int max(int a, int b)
+{
+    return a>b?a:b;
+}
+
+int rob(int* nums, int numsSize) {
+    int count[numsSize];
+    count[0]=nums[0];
+
+    for(int i=1;i<numsSize;i++)
+    {
+        int pick=nums[i];
+        if(i>1)
+        {
+            pick+=count[i-2];
+        }
+        int notpick=count[i-1];
+        count[i]=max(pick,notpick);
+    }
+    return count[numsSize-1];
+}
